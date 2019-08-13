@@ -21,10 +21,18 @@ var pArrowLocations, aLength;
 var nav, f;
 
 var fontT, fontB, fontL;
+
+var projectTexts, projectImages;
+
 function preload() {
 	fontT = loadFont("FONTS/fontT.ttf");
 	fontB = loadFont("FONTS/fontB.ttf");
 	fontL = loadFont("FONTS/fontL.ttf");
+	projectTexts = loadStrings("projectInfo.txt");
+	projectImages = [];
+	projectImages.push(loadImage("images/0.jpg"));
+	projectImages.push(loadImage("images/1.jpg"));
+	projectImages.push(loadImage("images/2.jpg"));
 }
 
 function setup() {
@@ -48,7 +56,7 @@ function setup() {
 	nav = 0;
 	textInit();
 	projectsInit();
-	pArrowInit();
+	ArrowInit();
 }
 
 function draw() {
@@ -74,7 +82,7 @@ function draw() {
 	drawSpace();
 	drawTexts();
 	drawProjects();
-	pArrowDraw();
+	ArrowDraw();
 }
 
 //#region space
@@ -284,7 +292,7 @@ function previousText() {
 //#endregion
 
 //#region ARROWS
-function pArrowInit() {
+function ArrowInit() {
 	var midX;
 	var midY;
 
@@ -323,7 +331,7 @@ function pArrowInit() {
 	]);
 }
 
-function pArrowDraw() {
+function ArrowDraw() {
 	stroke(255);
 	strokeWeight(5);
 
@@ -413,22 +421,25 @@ function windowResized() {
 	GP();
 	textInit();
 	projectsInit();
-	pArrowInit();
+	ArrowInit();
 }
 
 function keyPressed() {
-	if (keyCode === RIGHT_ARROW) {
-		nextText();
-	} else if (keyCode === LEFT_ARROW) {
-		previousText();
+	if (textCounter == 1) {
+		if (keyCode === RIGHT_ARROW && projectIndex < projectTexts.length - 1) {
+			projectIndex += 1;
+		} else if (keyCode === LEFT_ARROW && projectIndex > 0) {
+			projectIndex -= 1;
+		}
 	}
 }
 //#endregion
 
 //#region PROJECTPAGEBOX!
-var projectLocations;
+var projectLocations, projectIndex;
 
 function projectsInit() {
+	projectIndex = 0;
 	projectLocations = [];
 
 	var pWidth = (document.documentElement.clientWidth / 100) * 50;
@@ -451,16 +462,33 @@ function projectsInit() {
 }
 
 function drawProjects() {
-	for (i = 0; i < projectLocations.length; i++) {
-		stroke(0);
-		strokeWeight(2);
-		noFill();
-		rect(
-			projectLocations[i][0],
-			projectLocations[i][1],
-			projectLocations[i][2],
-			projectLocations[i][3]
-		);
-	}
+	fill(255);
+	textSize((document.documentElement.clientWidth / 150) * 3 + 4);
+	textFont(fontB);
+	text(
+		projectTexts[projectIndex],
+		projectLocations[1][0] + 5,
+		projectLocations[1][1] + 5,
+		projectLocations[1][2],
+		projectLocations[1][3]
+	);
+
+	textSize(document.documentElement.clientWidth / 150 + 4);
+	textV =
+		"(use arrow keys to navigate) (click on the image to be taken to the github page)";
+	text(
+		textV,
+		width / 2 - textWidth(textV) / 2,
+		projectLocations[1][1] + document.documentElement.clientHeight / 4.5
+	);
+
+	image(
+		projectImages[projectIndex],
+		projectLocations[0][0] - 15,
+		projectLocations[0][1] - 15,
+		projectLocations[0][2],
+		projectLocations[0][3]
+	);
 }
+
 //#endregion
