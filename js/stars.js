@@ -75,8 +75,6 @@ function draw() {
 	drawTexts();
 	drawProjects();
 	pArrowDraw();
-
-	console.log("CHANGED");
 }
 
 //#region space
