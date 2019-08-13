@@ -1,0 +1,31 @@
+/*#region DEFAULT*/
+html {
+	overflow: hidden;
+}
+body {
+	margin: 0%;
+	background-color: rgb(0, 0, 0);
+}
+/*#endregion*/
+
+/*#region ARROWS*/
+.rightArrow {
+	z-index: 10;
+
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	top: 92.5vh;
+	margin-left: 95vw;
+}
+.leftArrow {
+	z-index: 10;
+
+	width: 25px;
+	height: 25px;
+	position: absolute;
+	top: 92.5vh;
+	margin-left: 88vw;
+}
+
+/*#endregion*/
