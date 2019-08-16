@@ -30,9 +30,9 @@ function preload() {
 	fontL = loadFont("FONTS/fontL.ttf");
 	projectTexts = loadStrings("projectInfo.txt");
 	projectImages = [];
-	projectImages.push(loadImage("images/0.jpg"));
-	projectImages.push(loadImage("images/1.jpg"));
-	projectImages.push(loadImage("images/2.jpg"));
+	projectImages.push(loadImage("projects/project images/0.jpg"));
+	projectImages.push(loadImage("projects/project images/1.jpg"));
+	projectImages.push(loadImage("projects/project images/2.jpg"));
 }
 
 function setup() {
@@ -44,10 +44,7 @@ function setup() {
 	generated = false;
 	PLANET = [];
 	document.getElementById("defaultCanvas0").style = "z-index, 1";
-	amount = random(
-		document.documentElement.clientWidth * 0.2,
-		document.documentElement.clientWidth * 0.25
-	);
+	amount = random(document.documentElement.clientWidth * 0.2, document.documentElement.clientWidth * 0.25);
 	shipX1 = -100;
 	shipX2 = document.documentElement.clientWidth + 100;
 	explosion = false;
@@ -203,12 +200,10 @@ function textInit() {
 	textV = "My really super cool website and other awesome stuff.";
 	textLocations.push([textV, 75, document.documentElement.clientHeight / 2.25]);
 	//PROJECTS
-	textV = "PROJECTS";
-	textLocations.push([
-		textV,
-		document.documentElement.clientWidth / 3.8,
-		(document.documentElement.clientHeight / 2) * 2.25
-	]);
+	textV = "PROJECTS:";
+	textLocations.push([textV, document.documentElement.clientWidth / 3.8, (document.documentElement.clientHeight / 2) * 2.25]);
+	textV = "use the arrow keys or a&d to navigate through!";
+	textLocations.push([textV, document.documentElement.clientWidth / 3.8 + 5, (document.documentElement.clientHeight / 2) * 2.3]);
 }
 
 function drawTexts() {
@@ -218,37 +213,24 @@ function drawTexts() {
 	fill(255);
 	textSize(fSize);
 	textFont(fontT);
-	text(
-		textLocations[0][0],
-		textLocations[0][1],
-		textLocations[0][2],
-		textLocations[0][3],
-		textLocations[0][4]
-	);
+	text(textLocations[0][0], textLocations[0][1], textLocations[0][2], textLocations[0][3], textLocations[0][4]);
 	fSize = (document.documentElement.clientWidth / 100) * 2 + 8;
 	fill(123);
 	textSize(fSize);
 	textFont(fontL);
-	text(
-		textLocations[1][0],
-		textLocations[1][1],
-		textLocations[1][2],
-		textLocations[1][3],
-		textLocations[1][4]
-	);
+	text(textLocations[1][0], textLocations[1][1], textLocations[1][2], textLocations[1][3], textLocations[1][4]);
 
 	//PROJECTS
 	fSize = (document.documentElement.clientWidth / 100) * 3 + 4;
 	fill(255);
 	textSize(fSize);
 	textFont(fontB);
-	text(
-		textLocations[2][0],
-		textLocations[2][1],
-		textLocations[2][2],
-		textLocations[2][3],
-		textLocations[2][4]
-	);
+	text(textLocations[2][0], textLocations[2][1], textLocations[2][2], textLocations[2][3], textLocations[2][4]);
+	fSize = (document.documentElement.clientWidth / 100) * 1 + 4;
+	fill(255);
+	textSize(fSize);
+	textFont(fontB);
+	text(textLocations[3][0], textLocations[3][1], textLocations[3][2], textLocations[3][3], textLocations[3][4]);
 }
 //#endregion
 
@@ -303,32 +285,12 @@ function ArrowInit() {
 	//left
 	midX = 2 * aLength;
 	midY = document.documentElement.clientHeight / 2;
-	pArrowLocations.push([
-		midX - aLength,
-		midY,
-		midX,
-		midY + aLength,
-		midX - aLength,
-		midY,
-		midX,
-		midY - aLength,
-		createVector(midX - aLength / 2, midY)
-	]);
+	pArrowLocations.push([midX - aLength, midY, midX, midY + aLength, midX - aLength, midY, midX, midY - aLength, createVector(midX - aLength / 2, midY)]);
 
 	//right
 	midX = document.documentElement.clientWidth - aLength;
 	midY = document.documentElement.clientHeight / 2;
-	pArrowLocations.push([
-		midX,
-		midY,
-		midX - aLength,
-		midY + aLength,
-		midX,
-		midY,
-		midX - aLength,
-		midY - aLength,
-		createVector(midX - aLength / 2, midY)
-	]);
+	pArrowLocations.push([midX, midY, midX - aLength, midY + aLength, midX, midY, midX - aLength, midY - aLength, createVector(midX - aLength / 2, midY)]);
 }
 
 function ArrowDraw() {
@@ -337,46 +299,20 @@ function ArrowDraw() {
 
 	//LEFT
 	if (textCounter == 0) {
-		line(
-			pArrowLocations[1][0],
-			pArrowLocations[1][1],
-			pArrowLocations[1][2],
-			pArrowLocations[1][3]
-		);
-		line(
-			pArrowLocations[1][4],
-			pArrowLocations[1][5],
-			pArrowLocations[1][6],
-			pArrowLocations[1][7]
-		);
+		line(pArrowLocations[1][0], pArrowLocations[1][1], pArrowLocations[1][2], pArrowLocations[1][3]);
+		line(pArrowLocations[1][4], pArrowLocations[1][5], pArrowLocations[1][6], pArrowLocations[1][7]);
 	}
 
 	//RIGHT
 	if (textCounter == 1) {
-		line(
-			pArrowLocations[0][0],
-			pArrowLocations[0][1],
-			pArrowLocations[0][2],
-			pArrowLocations[0][3]
-		);
-		line(
-			pArrowLocations[0][4],
-			pArrowLocations[0][5],
-			pArrowLocations[0][6],
-			pArrowLocations[0][7]
-		);
+		line(pArrowLocations[0][0], pArrowLocations[0][1], pArrowLocations[0][2], pArrowLocations[0][3]);
+		line(pArrowLocations[0][4], pArrowLocations[0][5], pArrowLocations[0][6], pArrowLocations[0][7]);
 	}
 
-	if (mouseX >= width / 2 && textCounter == 0) {
+	if (textCounter == 0) {
 		//RIGHT ARROW
-		if (
-			mouseX > pArrowLocations[1][8].x - aLength - 5 &&
-			mouseX < pArrowLocations[1][8].x + aLength + 5
-		) {
-			if (
-				mouseY < pArrowLocations[1][8].y + aLength + 5 &&
-				mouseY > pArrowLocations[1][8].y - aLength - 5
-			) {
+		if (mouseX > pArrowLocations[1][8].x - aLength - 5 && mouseX < pArrowLocations[1][8].x + aLength + 5) {
+			if (mouseY < pArrowLocations[1][8].y + aLength + 5 && mouseY > pArrowLocations[1][8].y - aLength - 5) {
 				cursor("pointer");
 				if (mouseIsPressed) {
 					nav = 1;
@@ -384,16 +320,10 @@ function ArrowDraw() {
 				}
 			}
 		}
-	} else if (mouseX <= width / 2 && textCounter == 1) {
+	} else if (textCounter == 1) {
 		//LEFT ARROW
-		if (
-			mouseX > pArrowLocations[0][8].x - aLength - 5 &&
-			mouseX < pArrowLocations[0][8].x + aLength + 5
-		) {
-			if (
-				mouseY < pArrowLocations[0][8].y + aLength + 5 &&
-				mouseY > pArrowLocations[0][8].y - aLength - 5
-			) {
+		if (mouseX > pArrowLocations[0][8].x - aLength - 5 && mouseX < pArrowLocations[0][8].x + aLength + 5) {
+			if (mouseY < pArrowLocations[0][8].y + aLength + 5 && mouseY > pArrowLocations[0][8].y - aLength - 5) {
 				cursor("pointer");
 				if (mouseIsPressed) {
 					nav = -1;
@@ -409,14 +339,8 @@ function ArrowDraw() {
 
 //#region EVENTS
 function windowResized() {
-	amount = random(
-		document.documentElement.clientWidth * 0.25,
-		document.documentElement.clientWidth * 0.5
-	);
-	resizeCanvas(
-		document.documentElement.clientWidth,
-		document.documentElement.clientHeight
-	);
+	amount = random(document.documentElement.clientWidth * 0.25, document.documentElement.clientWidth * 0.5);
+	resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight);
 	generateStars();
 	GP();
 	textInit();
@@ -426,11 +350,22 @@ function windowResized() {
 
 function keyPressed() {
 	if (textCounter == 1) {
-		if (keyCode === RIGHT_ARROW && projectIndex < projectTexts.length - 1) {
+		if (keyCode == RIGHT_ARROW && projectIndex < projectTexts.length - 1) {
 			projectIndex += 1;
-		} else if (keyCode === LEFT_ARROW && projectIndex > 0) {
+		} else if (keyCode == LEFT_ARROW && projectIndex > 0) {
 			projectIndex -= 1;
 		}
+
+		if (keyCode == 68 && projectIndex < projectTexts.length - 1) {
+			projectIndex += 1;
+		} else if (keyCode == 65 && projectIndex > 0) {
+			projectIndex -= 1;
+		}
+	}
+}
+function mouseReleased() {
+	if (clickedOnProject) {
+		openProject();
 	}
 }
 //#endregion
@@ -442,22 +377,21 @@ function projectsInit() {
 	projectIndex = 0;
 	projectLocations = [];
 
-	var pWidth = (document.documentElement.clientWidth / 100) * 50;
-	var pHeight = (document.documentElement.clientHeight / 100) * 75;
+	var pWidth = (document.documentElement.clientWidth / 100) * 22;
 
 	//image container
 	projectLocations.push([
 		document.documentElement.clientWidth / 2 - pWidth / 2,
-		pHeight / 4 + document.documentElement.clientHeight,
+		document.documentElement.clientHeight / 2 - pWidth / 2 + document.documentElement.clientHeight,
 		pWidth,
-		pHeight - pHeight / 4
+		pWidth
 	]);
 	//text container
 	projectLocations.push([
 		document.documentElement.clientWidth / 2 - pWidth / 2,
-		pHeight / 4 + document.documentElement.clientHeight + pHeight - pHeight / 4,
+		document.documentElement.clientHeight / 2 - pWidth / 4 + document.documentElement.clientHeight + pWidth * 1,
 		pWidth,
-		pHeight / 4
+		pWidth / 2
 	]);
 }
 
@@ -465,30 +399,33 @@ function drawProjects() {
 	fill(255);
 	textSize((document.documentElement.clientWidth / 150) * 3 + 4);
 	textFont(fontB);
-	text(
-		projectTexts[projectIndex],
-		projectLocations[1][0] + 5,
-		projectLocations[1][1] + 5,
-		projectLocations[1][2],
-		projectLocations[1][3]
-	);
+	text(projectTexts[projectIndex], projectLocations[1][0] + 5, projectLocations[1][1] + 5, projectLocations[1][2]);
 
-	textSize(document.documentElement.clientWidth / 150 + 4);
-	textV =
-		"(use arrow keys to navigate) (click on the image to be taken to the github page)";
-	text(
-		textV,
-		width / 2 - textWidth(textV) / 2,
-		projectLocations[1][1] + document.documentElement.clientHeight / 4.5
-	);
+	fill(123);
+	rect(projectLocations[0][0], projectLocations[0][1], projectLocations[0][2], projectLocations[0][3]);
+	image(projectImages[projectIndex], projectLocations[0][0] - 10, projectLocations[0][1] - 10, projectLocations[0][2], projectLocations[0][3]);
 
-	image(
-		projectImages[projectIndex],
-		projectLocations[0][0] - 15,
-		projectLocations[0][1] - 15,
-		projectLocations[0][2],
-		projectLocations[0][3]
-	);
+	if (
+		mouseX >= projectLocations[0][0] - 10 &&
+		mouseX <= projectLocations[0][0] + projectLocations[0][2] &&
+		mouseY >= projectLocations[0][1] - 10 &&
+		mouseY <= projectLocations[0][3] + projectLocations[0][3] / 2 + 10 &&
+		textCounter == 1
+	) {
+		cursor("pointer");
+		clickedOnProject = true;
+	} else {
+		cursor("auto");
+		clickedOnProject = false;
+	}
 }
-
+function openProject() {
+	if (projectIndex == 0) {
+		window.open("/projects/cgol", "_blank");
+	} else if (projectIndex == 1) {
+		window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
+	} else if (projectIndex == 2) {
+		window.open("https://www.google.com", "_blank");
+	}
+}
 //#endregion
