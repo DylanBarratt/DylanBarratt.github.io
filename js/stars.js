@@ -421,7 +421,7 @@ function drawProjects() {
 }
 function openProject() {
 	if (projectIndex == 0) {
-		window.open("/projects/cgol", "_blank");
+		window.open("/projects/Conway's Game of Life", "_blank");
 	} else if (projectIndex == 1) {
 		window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
 	} else if (projectIndex == 2) {
