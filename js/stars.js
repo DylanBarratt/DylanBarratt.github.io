@@ -28,7 +28,7 @@ function preload() {
 	fontT = loadFont("FONTS/fontT.ttf");
 	fontB = loadFont("FONTS/fontB.ttf");
 	fontL = loadFont("FONTS/fontL.ttf");
-	projectTexts = loadStrings("projectInfo.txt");
+	projectTexts = loadStrings("projects/projectInfo.txt");
 	projectImages = [];
 	projectImages.push(loadImage("projects/project images/0.jpg"));
 	projectImages.push(loadImage("projects/project images/1.jpg"));
@@ -421,9 +421,9 @@ function drawProjects() {
 }
 function openProject() {
 	if (projectIndex == 0) {
-		window.open("/projects/Conway's Game of Life", "_blank");
+		window.open("/projects/Conway's Game of Life/index.html", "_blank");
 	} else if (projectIndex == 1) {
-		window.open("https://mail.google.com/mail/u/0/#inbox", "_blank");
+		window.open("/projects/Noughts & crosses/index.html", "_blank");
 	} else if (projectIndex == 2) {
 		window.open("https://www.google.com", "_blank");
 	}
