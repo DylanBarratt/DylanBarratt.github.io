@@ -1,3 +1,2 @@
 Conway's Game of Life Re-creation
 Unbeatable Noughts & Crosses
-I HAVE NO MORE SAMPLE TITLES

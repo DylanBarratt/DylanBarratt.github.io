@@ -24,6 +24,8 @@ var fontT, fontB, fontL;
 
 var projectTexts, projectImages;
 
+var arrowsLoaded, textLoaded, projectsLoaded;
+
 function preload() {
 	fontT = loadFont("FONTS/fontT.ttf");
 	fontB = loadFont("FONTS/fontB.ttf");
@@ -32,7 +34,6 @@ function preload() {
 	projectImages = [];
 	projectImages.push(loadImage("projects/project images/0.jpg"));
 	projectImages.push(loadImage("projects/project images/1.jpg"));
-	projectImages.push(loadImage("projects/project images/2.jpg"));
 }
 
 function setup() {
@@ -41,10 +42,7 @@ function setup() {
 
 	PLANET = [];
 	document.getElementById("defaultCanvas0").style = "z-index, 1";
-	amount = random(
-		document.documentElement.clientWidth * 0.2,
-		document.documentElement.clientWidth * 0.25
-	);
+	amount = random(document.documentElement.clientWidth * 0.2, document.documentElement.clientWidth * 0.25);
 	shipX1 = -100;
 	shipX2 = document.documentElement.clientWidth + 100;
 
@@ -57,12 +55,27 @@ function setup() {
 	es = 0;
 	nav = 0;
 
+	arrowsLoaded = false;
+	textLoaded = false;
+	projectsLoaded = false;
 	textInit();
 	projectsInit();
 	ArrowInit();
+
+	mobileCheck();
 }
 
 function draw() {
+	if (isMobile) {
+		mobile();
+	} else {
+		computer();
+	}
+}
+
+function mobile() {}
+
+function computer() {
 	if (f < frameCount - 2) {
 		if (nav == -1) {
 			previousText();
@@ -83,11 +96,18 @@ function draw() {
 	chooseColour();
 
 	drawSpace();
-	drawTexts();
-	drawProjects();
-	ArrowDraw();
-}
 
+	if (arrowsLoaded) {
+		ArrowDraw();
+	}
+	if (textLoaded) {
+		drawTexts();
+	}
+
+	if (projectsLoaded) {
+		drawProjects();
+	}
+}
 //#region space
 function generateStars() {
 	locations = [];
@@ -197,78 +217,86 @@ function drawSpace() {
 
 //#region page data
 function textInit() {
-	var textV;
-	textLocations = [];
-	textCounter = 0;
-	//TITLE
-	textV = "DYLAN BARRATT.com";
-	textLocations.push([textV, 50, document.documentElement.clientHeight / 2.75]);
-	textV = "My really super cool website and other awesome stuff.";
-	textLocations.push([textV, 75, document.documentElement.clientHeight / 2.25]);
-	//PROJECTS
-	textV = "PROJECTS:";
-	textLocations.push([
-		textV,
-		document.documentElement.clientWidth / 3.8,
-		(document.documentElement.clientHeight / 2) * 2.25
-	]);
-	textV = "use the arrow keys or a&d to navigate through!";
-	textLocations.push([
-		textV,
-		document.documentElement.clientWidth / 3.8 + 5,
-		(document.documentElement.clientHeight / 2) * 2.3
-	]);
+	if (document.documentElement.clientWidth >= 500) {
+		console.log("k");
+		var textV;
+		textLocations = [];
+		textCounter = 0;
+		//TITLE
+		textV = "DYLAN BARRATT.com";
+		textLocations.push([textV, 10, document.documentElement.clientHeight / 2.75]);
+		textV = "My really super cool website and other awesome stuff.";
+		textLocations.push([textV, 10, document.documentElement.clientHeight / 2.25]);
+		//PROJECTS
+		textV = "PROJECTS:";
+		textLocations.push([textV, document.documentElement.clientWidth / 3.8, (document.documentElement.clientHeight / 2) * 2.25]);
+		textV = "use the arrow keys or a&d to navigate through!";
+		textLocations.push([textV, document.documentElement.clientWidth / 3.8 + 5, (document.documentElement.clientHeight / 2) * 2.3]);
+	} else {
+		var textV;
+		textLocations = [];
+		textCounter = 0;
+		//TITLE
+		textV = "DYLAN BARRATT.com";
+		textLocations.push([textV, 5, document.documentElement.clientHeight / 2.75]);
+		//PROJECTS
+		textV = "PROJECTS:";
+		textLocations.push([textV, document.documentElement.clientWidth / 3.8, (document.documentElement.clientHeight / 2) * 2.25]);
+		textV = "use the arrow keys or a&d to navigate through!";
+		textLocations.push([textV, document.documentElement.clientWidth / 3.8 + 5, (document.documentElement.clientHeight / 2) * 2.3]);
+	}
+
+	textLoaded = true;
 }
 
 function drawTexts() {
-	var fSize;
-	//TITLE
-	fSize = (document.documentElement.clientWidth / 100) * 8 + 6;
-	fill(255);
-	textSize(fSize);
-	textFont(fontT);
-	text(
-		textLocations[0][0],
-		textLocations[0][1],
-		textLocations[0][2],
-		textLocations[0][3],
-		textLocations[0][4]
-	);
-	fSize = (document.documentElement.clientWidth / 100) * 2 + 8;
-	fill(123);
-	textSize(fSize);
-	textFont(fontL);
-	text(
-		textLocations[1][0],
-		textLocations[1][1],
-		textLocations[1][2],
-		textLocations[1][3],
-		textLocations[1][4]
-	);
+	noStroke();
+	if (document.documentElement.clientWidth >= 500) {
+		var fSize;
+		//TITLE
+		fSize = (document.documentElement.clientWidth / 100) * 8 + 6;
+		fill(255);
+		textSize(fSize);
+		textFont(fontT);
+		text(textLocations[0][0], textLocations[0][1], textLocations[0][2], textLocations[0][3], textLocations[0][4]);
+		fSize = (document.documentElement.clientWidth / 100) * 2 + 8;
+		fill(123);
+		textSize(fSize);
+		textFont(fontL);
+		text(textLocations[1][0], textLocations[1][1], textLocations[1][2], textLocations[1][3], textLocations[1][4]);
 
-	//PROJECTS
-	fSize = (document.documentElement.clientWidth / 100) * 3 + 4;
-	fill(255);
-	textSize(fSize);
-	textFont(fontB);
-	text(
-		textLocations[2][0],
-		textLocations[2][1],
-		textLocations[2][2],
-		textLocations[2][3],
-		textLocations[2][4]
-	);
-	fSize = (document.documentElement.clientWidth / 100) * 1 + 4;
-	fill(255);
-	textSize(fSize);
-	textFont(fontB);
-	text(
-		textLocations[3][0],
-		textLocations[3][1],
-		textLocations[3][2],
-		textLocations[3][3],
-		textLocations[3][4]
-	);
+		//PROJECTS
+		fSize = (document.documentElement.clientWidth / 100) * 3 + 4;
+		fill(255);
+		textSize(fSize);
+		textFont(fontB);
+		text(textLocations[2][0], textLocations[2][1], textLocations[2][2], textLocations[2][3], textLocations[2][4]);
+		fSize = (document.documentElement.clientWidth / 100) * 1 + 4;
+		fill(255);
+		textSize(fSize);
+		textFont(fontB);
+		text(textLocations[3][0], textLocations[3][1], textLocations[3][2], textLocations[3][3], textLocations[3][4]);
+	} else {
+		var fSize;
+		//TITLE
+		fSize = (document.documentElement.clientWidth / 100) * 8 + 6;
+		fill(255);
+		textSize(fSize);
+		textFont(fontT);
+		text(textLocations[0][0], textLocations[0][1], textLocations[0][2], textLocations[0][3], textLocations[0][4]);
+
+		//PROJECTS
+		fSize = (document.documentElement.clientWidth / 100) * 3 + 4;
+		fill(255);
+		textSize(fSize);
+		textFont(fontB);
+		text(textLocations[1][0], textLocations[1][1], textLocations[1][2], textLocations[1][3], textLocations[1][4]);
+		fSize = (document.documentElement.clientWidth / 100) * 1 + 4;
+		fill(255);
+		textSize(fSize);
+		textFont(fontB);
+		text(textLocations[2][0], textLocations[2][1], textLocations[2][2], textLocations[2][3], textLocations[2][4]);
+	}
 }
 //#endregion
 
@@ -323,32 +351,14 @@ function ArrowInit() {
 	//left
 	midX = 2 * aLength;
 	midY = document.documentElement.clientHeight / 2;
-	pArrowLocations.push([
-		midX - aLength,
-		midY,
-		midX,
-		midY + aLength,
-		midX - aLength,
-		midY,
-		midX,
-		midY - aLength,
-		createVector(midX - aLength / 2, midY)
-	]);
+	pArrowLocations.push([midX - aLength, midY, midX, midY + aLength, midX - aLength, midY, midX, midY - aLength, createVector(midX - aLength / 2, midY)]);
 
 	//right
 	midX = document.documentElement.clientWidth - aLength;
 	midY = document.documentElement.clientHeight / 2;
-	pArrowLocations.push([
-		midX,
-		midY,
-		midX - aLength,
-		midY + aLength,
-		midX,
-		midY,
-		midX - aLength,
-		midY - aLength,
-		createVector(midX - aLength / 2, midY)
-	]);
+	pArrowLocations.push([midX, midY, midX - aLength, midY + aLength, midX, midY, midX - aLength, midY - aLength, createVector(midX - aLength / 2, midY)]);
+
+	arrowsLoaded = true;
 }
 
 function ArrowDraw() {
@@ -357,46 +367,20 @@ function ArrowDraw() {
 
 	//LEFT
 	if (textCounter == 0) {
-		line(
-			pArrowLocations[1][0],
-			pArrowLocations[1][1],
-			pArrowLocations[1][2],
-			pArrowLocations[1][3]
-		);
-		line(
-			pArrowLocations[1][4],
-			pArrowLocations[1][5],
-			pArrowLocations[1][6],
-			pArrowLocations[1][7]
-		);
+		line(pArrowLocations[1][0], pArrowLocations[1][1], pArrowLocations[1][2], pArrowLocations[1][3]);
+		line(pArrowLocations[1][4], pArrowLocations[1][5], pArrowLocations[1][6], pArrowLocations[1][7]);
 	}
 
 	//RIGHT
 	if (textCounter == 1) {
-		line(
-			pArrowLocations[0][0],
-			pArrowLocations[0][1],
-			pArrowLocations[0][2],
-			pArrowLocations[0][3]
-		);
-		line(
-			pArrowLocations[0][4],
-			pArrowLocations[0][5],
-			pArrowLocations[0][6],
-			pArrowLocations[0][7]
-		);
+		line(pArrowLocations[0][0], pArrowLocations[0][1], pArrowLocations[0][2], pArrowLocations[0][3]);
+		line(pArrowLocations[0][4], pArrowLocations[0][5], pArrowLocations[0][6], pArrowLocations[0][7]);
 	}
 
 	if (textCounter == 0) {
 		//RIGHT ARROW
-		if (
-			mouseX > pArrowLocations[1][8].x - aLength - 5 &&
-			mouseX < pArrowLocations[1][8].x + aLength + 5
-		) {
-			if (
-				mouseY < pArrowLocations[1][8].y + aLength + 5 &&
-				mouseY > pArrowLocations[1][8].y - aLength - 5
-			) {
+		if (mouseX > pArrowLocations[1][8].x - aLength - 5 && mouseX < pArrowLocations[1][8].x + aLength + 5) {
+			if (mouseY < pArrowLocations[1][8].y + aLength + 5 && mouseY > pArrowLocations[1][8].y - aLength - 5) {
 				cursor("pointer");
 				if (mouseIsPressed) {
 					nav = 1;
@@ -406,14 +390,8 @@ function ArrowDraw() {
 		}
 	} else if (textCounter == 1) {
 		//LEFT ARROW
-		if (
-			mouseX > pArrowLocations[0][8].x - aLength - 5 &&
-			mouseX < pArrowLocations[0][8].x + aLength + 5
-		) {
-			if (
-				mouseY < pArrowLocations[0][8].y + aLength + 5 &&
-				mouseY > pArrowLocations[0][8].y - aLength - 5
-			) {
+		if (mouseX > pArrowLocations[0][8].x - aLength - 5 && mouseX < pArrowLocations[0][8].x + aLength + 5) {
+			if (mouseY < pArrowLocations[0][8].y + aLength + 5 && mouseY > pArrowLocations[0][8].y - aLength - 5) {
 				cursor("pointer");
 				if (mouseIsPressed) {
 					nav = -1;
@@ -429,13 +407,14 @@ function ArrowDraw() {
 
 //#region EVENTS
 function windowResized() {
-	amount = random(
-		document.documentElement.clientWidth * 0.25,
-		document.documentElement.clientWidth * 0.5
-	);
+	amount = random(document.documentElement.clientWidth * 0.25, document.documentElement.clientWidth * 0.5);
 	resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight);
 	generateStars();
 	GP();
+
+	arrowsLoaded = false;
+	textLoaded = false;
+	projectsLoaded = false;
 	textInit();
 	projectsInit();
 	ArrowInit();
@@ -443,13 +422,13 @@ function windowResized() {
 
 function keyPressed() {
 	if (textCounter == 1) {
-		if (keyCode == RIGHT_ARROW && projectIndex < projectTexts.length - 1) {
+		if (keyCode == RIGHT_ARROW && projectIndex <= projectTexts.length - 2) {
 			projectIndex += 1;
 		} else if (keyCode == LEFT_ARROW && projectIndex > 0) {
 			projectIndex -= 1;
 		}
 
-		if (keyCode == 68 && projectIndex < projectTexts.length - 1) {
+		if (keyCode == 68 && projectIndex <= projectTexts.length - 2) {
 			projectIndex += 1;
 		} else if (keyCode == 65 && projectIndex > 0) {
 			projectIndex -= 1;
@@ -474,68 +453,29 @@ function projectsInit() {
 	var pWidth = (document.documentElement.clientWidth / 100) * 22;
 
 	//image container
-	projectLocations.push([
-		document.documentElement.clientWidth / 2 - pWidth / 2,
-		document.documentElement.clientHeight / 2 - pWidth / 2 + document.documentElement.clientHeight,
-		pWidth,
-		pWidth
-	]);
+	projectLocations.push([document.documentElement.clientWidth / 2 - pWidth / 2, document.documentElement.clientHeight / 2 - pWidth / 2 + document.documentElement.clientHeight, pWidth, pWidth]);
 	//text container
-	projectLocations.push([
-		document.documentElement.clientWidth / 2 - pWidth / 2,
-		document.documentElement.clientHeight / 2 -
-			pWidth / 4 +
-			document.documentElement.clientHeight +
-			pWidth * 1,
-		pWidth,
-		pWidth / 2
-	]);
+	projectLocations.push([document.documentElement.clientWidth / 2 - pWidth / 2, document.documentElement.clientHeight / 2 - pWidth / 4 + document.documentElement.clientHeight + pWidth * 1, pWidth, pWidth / 2]);
+
+	projectsLoaded = true;
 }
 
 function drawProjects() {
 	fill(255);
 	textSize((document.documentElement.clientWidth / 150) * 3 + 4);
 	textFont(fontB);
-	text(
-		projectTexts[projectIndex],
-		projectLocations[1][0] + 5,
-		projectLocations[1][1] + 5,
-		projectLocations[1][2]
-	);
+	text(projectTexts[projectIndex], projectLocations[1][0] + 5, projectLocations[1][1] + 5, projectLocations[1][2]);
 
-	fill(0);
-	rect(
-		projectLocations[0][0],
-		projectLocations[0][1],
-		projectLocations[0][2],
-		projectLocations[0][3]
-	);
+	fill(25);
+	rect(projectLocations[0][0], projectLocations[0][1], projectLocations[0][2], projectLocations[0][3]);
 
 	if (!clickedOnProject) {
-		image(
-			projectImages[projectIndex],
-			projectLocations[0][0] - 10,
-			projectLocations[0][1] - 10,
-			projectLocations[0][2],
-			projectLocations[0][3]
-		);
+		image(projectImages[projectIndex], projectLocations[0][0] - 10, projectLocations[0][1] - 10, projectLocations[0][2], projectLocations[0][3]);
 	} else {
-		image(
-			projectImages[projectIndex],
-			projectLocations[0][0],
-			projectLocations[0][1],
-			projectLocations[0][2],
-			projectLocations[0][3]
-		);
+		image(projectImages[projectIndex], projectLocations[0][0], projectLocations[0][1], projectLocations[0][2], projectLocations[0][3]);
 	}
 
-	if (
-		mouseX >= projectLocations[0][0] - 10 &&
-		mouseX <= projectLocations[0][0] + projectLocations[0][2] &&
-		mouseY >= projectLocations[0][1] - 10 &&
-		mouseY <= projectLocations[0][1] + projectLocations[0][3] &&
-		textCounter == 1
-	) {
+	if (mouseX >= projectLocations[0][0] - 10 && mouseX <= projectLocations[0][0] + projectLocations[0][2] && mouseY >= projectLocations[0][1] - 10 && mouseY <= projectLocations[0][1] + projectLocations[0][3] && textCounter == 1) {
 		cursor("pointer");
 		clickedOnProject = true;
 	} else {
@@ -553,3 +493,19 @@ function openProject() {
 	}
 }
 //#endregion
+
+var isMobile = false;
+function mobileCheck() {
+	// device detection
+	if (
+		/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(
+			navigator.userAgent
+		) ||
+		/1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(
+			navigator.userAgent.substr(0, 4)
+		)
+	) {
+		isMobile = true;
+		console.log("MOBILE!");
+	}
+}
