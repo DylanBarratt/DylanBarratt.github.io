@@ -24,7 +24,7 @@ var fontT, fontB, fontL;
 
 var projectTexts, projectImages;
 
-var arrowsLoaded, textLoaded, projectsLoaded;
+var textLoaded, projectsLoaded;
 
 function preload() {
 	fontT = loadFont("FONTS/fontT.ttf");
@@ -73,7 +73,20 @@ function draw() {
 	}
 }
 
-function mobile() {}
+function mobile() {
+	noSmooth();
+	strokeCap(PROJECT);
+	w = document.documentElement.clientWidth;
+	h = document.documentElement.clientHeight;
+	canvas = createCanvas(w, h);
+	canvas.position(0, 0);
+
+	chooseColour();
+
+	drawSpace();
+
+	mobileText();
+}
 
 function computer() {
 	if (f < frameCount - 2) {
@@ -96,10 +109,8 @@ function computer() {
 	chooseColour();
 
 	drawSpace();
+	ArrowDraw();
 
-	if (arrowsLoaded) {
-		ArrowDraw();
-	}
 	if (textLoaded) {
 		drawTexts();
 	}
@@ -217,34 +228,19 @@ function drawSpace() {
 
 //#region page data
 function textInit() {
-	if (document.documentElement.clientWidth >= 500) {
-		console.log("k");
-		var textV;
-		textLocations = [];
-		textCounter = 0;
-		//TITLE
-		textV = "DYLAN BARRATT.com";
-		textLocations.push([textV, 10, document.documentElement.clientHeight / 2.75]);
-		textV = "My really super cool website and other awesome stuff.";
-		textLocations.push([textV, 10, document.documentElement.clientHeight / 2.25]);
-		//PROJECTS
-		textV = "PROJECTS:";
-		textLocations.push([textV, document.documentElement.clientWidth / 3.8, (document.documentElement.clientHeight / 2) * 2.25]);
-		textV = "use the arrow keys or a&d to navigate through!";
-		textLocations.push([textV, document.documentElement.clientWidth / 3.8 + 5, (document.documentElement.clientHeight / 2) * 2.3]);
-	} else {
-		var textV;
-		textLocations = [];
-		textCounter = 0;
-		//TITLE
-		textV = "DYLAN BARRATT.com";
-		textLocations.push([textV, 5, document.documentElement.clientHeight / 2.75]);
-		//PROJECTS
-		textV = "PROJECTS:";
-		textLocations.push([textV, document.documentElement.clientWidth / 3.8, (document.documentElement.clientHeight / 2) * 2.25]);
-		textV = "use the arrow keys or a&d to navigate through!";
-		textLocations.push([textV, document.documentElement.clientWidth / 3.8 + 5, (document.documentElement.clientHeight / 2) * 2.3]);
-	}
+	var textV;
+	textLocations = [];
+	textCounter = 0;
+	//TITLE
+	textV = "DYLAN BARRATT.com";
+	textLocations.push([textV, 10, document.documentElement.clientHeight / 2.75]);
+	textV = "My really super cool website and other awesome stuff.";
+	textLocations.push([textV, 10, document.documentElement.clientHeight / 2.25]);
+	//PROJECTS
+	textV = "PROJECTS:";
+	textLocations.push([textV, document.documentElement.clientWidth / 3.8, (document.documentElement.clientHeight / 2) * 2.25]);
+	textV = "use the arrow keys or a&d to navigate through!";
+	textLocations.push([textV, document.documentElement.clientWidth / 3.8 + 5, (document.documentElement.clientHeight / 2) * 2.3]);
 
 	textLoaded = true;
 }
@@ -290,13 +286,30 @@ function drawTexts() {
 		fill(255);
 		textSize(fSize);
 		textFont(fontB);
-		text(textLocations[1][0], textLocations[1][1], textLocations[1][2], textLocations[1][3], textLocations[1][4]);
+		text(textLocations[2][0], textLocations[2][1], textLocations[2][2], textLocations[2][3], textLocations[2][4]);
 		fSize = (document.documentElement.clientWidth / 100) * 1 + 4;
 		fill(255);
 		textSize(fSize);
 		textFont(fontB);
-		text(textLocations[2][0], textLocations[2][1], textLocations[2][2], textLocations[2][3], textLocations[2][4]);
+		text(textLocations[3][0], textLocations[3][1], textLocations[3][2], textLocations[3][3], textLocations[3][4]);
 	}
+}
+
+function mobileText() {
+	smooth();
+	fill(255);
+	textSize(width / 10);
+	textFont(fontT);
+
+	textV = "DYLANBARRATT.COM";
+	text(textV, width / 2 - textWidth(textV) / 2, height / 2 - 100);
+
+	fill(255);
+	textSize(width / 20);
+	textFont(fontL);
+
+	textV = "PLEASE VIEW THIS SITE ON A COMPUTER!";
+	text(textV, width / 2 - textWidth(textV) / 2, height / 2);
 }
 //#endregion
 
@@ -357,8 +370,6 @@ function ArrowInit() {
 	midX = document.documentElement.clientWidth - aLength;
 	midY = document.documentElement.clientHeight / 2;
 	pArrowLocations.push([midX, midY, midX - aLength, midY + aLength, midX, midY, midX - aLength, midY - aLength, createVector(midX - aLength / 2, midY)]);
-
-	arrowsLoaded = true;
 }
 
 function ArrowDraw() {
@@ -387,6 +398,8 @@ function ArrowDraw() {
 					f = frameCount;
 				}
 			}
+		} else {
+			cursor("auto");
 		}
 	} else if (textCounter == 1) {
 		//LEFT ARROW
@@ -398,9 +411,9 @@ function ArrowDraw() {
 					f = frameCount;
 				}
 			}
+		} else {
+			cursor("auto");
 		}
-	} else {
-		cursor("auto");
 	}
 }
 //#endregion
@@ -450,7 +463,7 @@ function projectsInit() {
 	projectLocations = [];
 	clickedOnProject = false;
 
-	var pWidth = (document.documentElement.clientWidth / 100) * 22;
+	var pWidth = (document.documentElement.clientHeight / 100) * 50;
 
 	//image container
 	projectLocations.push([document.documentElement.clientWidth / 2 - pWidth / 2, document.documentElement.clientHeight / 2 - pWidth / 2 + document.documentElement.clientHeight, pWidth, pWidth]);
@@ -478,7 +491,7 @@ function drawProjects() {
 	if (mouseX >= projectLocations[0][0] - 10 && mouseX <= projectLocations[0][0] + projectLocations[0][2] && mouseY >= projectLocations[0][1] - 10 && mouseY <= projectLocations[0][1] + projectLocations[0][3] && textCounter == 1) {
 		cursor("pointer");
 		clickedOnProject = true;
-	} else {
+	} else if (clickedOnProject) {
 		cursor("auto");
 		clickedOnProject = false;
 	}
