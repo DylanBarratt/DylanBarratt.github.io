@@ -300,16 +300,20 @@ function mobileText() {
 	fill(255);
 	textSize(width / 10);
 	textFont(fontT);
-
 	textV = "DYLANBARRATT.COM";
-	text(textV, width / 2 - textWidth(textV) / 2, height / 2 - 100);
+	text(textV, width / 2 - textWidth(textV) / 2, height / 2 - 100, width - 5);
+
+	textSize(width / 30);
+	textV = "Welcome to the site of all my meaningless code!";
+	text(textV, width / 2 - textWidth(textV) / 2, height / 2);
 
 	fill(255);
-	textSize(width / 20);
-	textFont(fontL);
+	textSize(width / 25);
+	textV = "Please view this site on a computer to see my projects!";
+	text(textV, width / 2 - textWidth(textV) / 2, height - 100);
 
-	textV = "PLEASE VIEW THIS SITE ON A COMPUTER!";
-	text(textV, width / 2 - textWidth(textV) / 2, height / 2);
+	textV = "or go to github.com/DylanBarratt";
+	text(textV, width / 2 - textWidth(textV) / 2, height - 50);
 }
 //#endregion
 
@@ -466,9 +470,19 @@ function projectsInit() {
 	var pWidth = (document.documentElement.clientHeight / 100) * 50;
 
 	//image container
-	projectLocations.push([document.documentElement.clientWidth / 2 - pWidth / 2, document.documentElement.clientHeight / 2 - pWidth / 2 + document.documentElement.clientHeight, pWidth, pWidth]);
+	projectLocations.push([
+		document.documentElement.clientWidth / 2 - pWidth / 2,
+		document.documentElement.clientHeight / 2 - pWidth / 2 + document.documentElement.clientHeight,
+		pWidth,
+		pWidth
+	]);
 	//text container
-	projectLocations.push([document.documentElement.clientWidth / 2 - pWidth / 2, document.documentElement.clientHeight / 2 - pWidth / 4 + document.documentElement.clientHeight + pWidth * 1, pWidth, pWidth / 2]);
+	projectLocations.push([
+		document.documentElement.clientWidth / 2 - pWidth / 2,
+		document.documentElement.clientHeight / 2 - pWidth / 4 + document.documentElement.clientHeight + pWidth * 1,
+		pWidth,
+		pWidth / 2
+	]);
 
 	projectsLoaded = true;
 }
@@ -488,7 +502,13 @@ function drawProjects() {
 		image(projectImages[projectIndex], projectLocations[0][0], projectLocations[0][1], projectLocations[0][2], projectLocations[0][3]);
 	}
 
-	if (mouseX >= projectLocations[0][0] - 10 && mouseX <= projectLocations[0][0] + projectLocations[0][2] && mouseY >= projectLocations[0][1] - 10 && mouseY <= projectLocations[0][1] + projectLocations[0][3] && textCounter == 1) {
+	if (
+		mouseX >= projectLocations[0][0] - 10 &&
+		mouseX <= projectLocations[0][0] + projectLocations[0][2] &&
+		mouseY >= projectLocations[0][1] - 10 &&
+		mouseY <= projectLocations[0][1] + projectLocations[0][3] &&
+		textCounter == 1
+	) {
 		cursor("pointer");
 		clickedOnProject = true;
 	} else if (clickedOnProject) {
