@@ -1,4 +1,4 @@
-# <h1><a href="dylanbarratt.com">dylanbarratt.com</a></h1>
+# <h1><a href="https://dylanbarratt.com">dylanbarratt.com</a></h1>
 
 ## About <a name = "about"></a>
 
