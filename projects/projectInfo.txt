@@ -1,2 +1,4 @@
 Conway's Game of Life Re-creation
 Unbeatable Noughts & Crosses
+Snake
+Minesweeper
