@@ -34,6 +34,7 @@ function preload() {
 	projectImages = [];
 	projectImages.push(loadImage("projects/project images/0.jpg"));
 	projectImages.push(loadImage("projects/project images/1.jpg"));
+	projectImages.push(loadImage("projects/project images/2.jpg"));
 }
 
 function setup() {
