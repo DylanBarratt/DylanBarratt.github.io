@@ -1,0 +1,110 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=10, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Building Plan</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<link rel="stylesheet" type="text/css" href="../header.css" />
+	</head>
+
+	<body>
+		<div id="header">
+			<a href="../index.html"><img src="../images/logos/beansW.png" id="logo" tabindex="8"/></a>
+
+			<div id="burger" onclick="burgerX(this)" tabindex="9">
+				<div class="bar" id="bar1"></div>
+				<div class="bar" id="bar2"></div>
+				<div class="bar" id="bar3"></div>
+			</div>
+		</div>
+
+		<div class="navigationWindow" id="nw">
+			<a href="../index.html">Home</a>
+			<a href="../companyProfile/companyProfile.html">Company Profile</a>
+			<a href="../team/team.html">Our Team</a>
+			<a href="../apply/apply.html">Apply for a Position</a>
+		</div>
+
+		<div class="map">
+			<img src="imageB.jpg" usemap="#image-map" />
+
+			<map name="image-map">
+				<area target="_self" alt="Meeting Room" title="Meeting Room" href="" coords="9,119,336,297" shape="rect" onclick="meetingRoom()" tabindex="1" />
+				<area target="_self" alt="Lab" title="Lab" href="" coords="226,479,10,295" shape="rect" onclick="lab()" tabindex="2" />
+				<area target="_self" alt="Reception" title="Reception" href="" coords="7,479,223,684" shape="rect" onclick="reception()" tabindex="3" />
+				<area target="_self" alt="Kitchen" title="Kitchen" href="" coords="405,679,223,554" shape="rect" onclick="kitchen()" tabindex="4" />
+				<area target="_self" alt="Breakroom" title="Breakroom" href="" coords="398,481,792,683" shape="rect" onclick="breakroom1()" tabindex="5" />
+				<area target="_self" alt="Workspace" title="Workspace" href="" coords="790,479,479,123" shape="rect" onclick="workspace()" tabindex="6" />
+				<area target="_self" alt="Breakroom" title="Breakroom" href="" coords="335,121,481,299" shape="rect" onclick="breakroom2()" tabindex="7" />
+			</map>
+		</div>
+
+		<div id="desc">
+			<h1 id="roomName">room name</h1>
+			<p id="roomDesc">this is the room</p>
+		</div>
+
+		<script>
+			function meetingRoom() {
+				event.preventDefault();
+
+				document.getElementById("desc").style.visibility = "visible";
+				document.getElementById("roomName").textContent = "Meeting Room";
+				document.getElementById("roomDesc").textContent = "In this room, the team comes together to discuss projects.";
+			}
+
+			function lab() {
+				event.preventDefault();
+
+				document.getElementById("desc").style.visibility = "visible";
+				document.getElementById("roomName").textContent = "Lab";
+				document.getElementById("roomDesc").textContent = "Here the team decides which prototype to use. The final designs for all sites are chosen here.";
+			}
+
+			function reception() {
+				event.preventDefault();
+
+				document.getElementById("desc").style.visibility = "visible";
+				document.getElementById("roomName").textContent = "Reception";
+				document.getElementById("roomDesc").textContent = "Here our receptionist greets all visitors. We also have some retro arcade machines here.";
+			}
+
+			function kitchen() {
+				event.preventDefault();
+
+				document.getElementById("desc").style.visibility = "visible";
+				document.getElementById("roomName").textContent = "Kitchen";
+				document.getElementById("roomDesc").textContent = "Here the inhouse chefs prepare food and snacks for our workers to enjoy throughout the day.";
+			}
+
+			function breakroom1() {
+				event.preventDefault();
+
+				document.getElementById("desc").style.visibility = "visible";
+				document.getElementById("roomName").textContent = "Breakroom One";
+				document.getElementById("roomDesc").textContent = "Here our employees enjoy lunch. It is also used for massages when our employees are stressed.";
+			}
+
+			function workspace() {
+				event.preventDefault();
+
+				document.getElementById("desc").style.visibility = "visible";
+				document.getElementById("roomName").textContent = "Workspace";
+				document.getElementById("roomDesc").textContent = "Here all the magic happens. Programmers, graphics and UX designers work in harmony.";
+			}
+
+			function breakroom2() {
+				event.preventDefault();
+
+				document.getElementById("desc").style.visibility = "visible";
+				document.getElementById("roomName").textContent = "Breakroom Two";
+				document.getElementById("roomDesc").textContent = "This room is filled with foosball tables, arcade machines and ping pong tables.";
+			}
+		</script>
+
+		<style></style>
+	</body>
+</html>
+<script src="../header.js"></script>

@@ -1,0 +1,112 @@
+#logo {
+	position: fixed;
+	left: 15px;
+	top: 5px;
+	width: 75px;
+	height: 75px;
+	background-color: transparent;
+	outline: none;
+}
+
+/*burger navigation*/
+.navigationWindow {
+	height: 100%;
+	width: 0;
+
+	position: fixed;
+	left: 0;
+	top: 0;
+
+	z-index: 9;
+
+	background: none;
+	background-color: white;
+
+	overflow-x: hidden;
+	transition: 0s;
+}
+.navigationWindow a {
+	padding: 8px;
+	margin-top: 30px;
+	display: block;
+	transition: 0.3s;
+	position: relative;
+	top: 25%;
+	left: 7.5vw;
+	width: 50%;
+	color: #f1f1f1;
+	background-color: white;
+	margin-left: 15vw;
+	text-align: left;
+	text-decoration: none;
+	font-size: 36px;
+	color: rgb(30, 30, 30);
+}
+
+.navigationWindow a:hover,
+.navigationWindow a:focus {
+	color: #818181;
+}
+
+#burger {
+	display: inline-block;
+	cursor: pointer;
+	position: fixed;
+	left: calc(100vw - 65px);
+	top: 15px;
+	background-color: transparent;
+	overflow: hidden;
+}
+.bar {
+	width: 35px;
+	height: 5px;
+	margin: 6px 0;
+
+	background-color: white;
+	transition: 0.4s;
+}
+.change #bar1 {
+	-webkit-transform: rotate(-45deg) translate(-9px, 6px);
+	transform: rotate(-45deg) translate(-9px, 6px);
+	background-color: black;
+}
+.change #bar2 {
+	opacity: 0;
+	background-color: black;
+}
+.change #bar3 {
+	-webkit-transform: rotate(45deg) translate(-8px, -8px);
+	transform: rotate(45deg) translate(-8px, -8px);
+	background-color: black;
+}
+
+#fire {
+	position: absolute;
+	top: 75vh;
+	left: 0;
+	width: 100vw;
+	height: 25vh;
+	opacity: 0.1;
+}
+
+#header {
+	position: sticky;
+	left: 0px;
+	width: 100vw;
+	height: 10vh;
+	background-color: rgb(30, 30, 30);
+	z-index: 10;
+	background-color: transparent;
+}
+
+@media screen and (max-width: 480px) {
+	.navigationWindow a {
+		font-size: 20pt;
+		text-align: center;
+		left: 10vw;
+	}
+
+	#burger {
+		left: calc(100vw - 55px);
+	}
+}

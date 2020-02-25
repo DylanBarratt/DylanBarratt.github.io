@@ -1,0 +1,83 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat&display=swap");
+* {
+	cursor: default;
+	font-family: "Montserrat", sans-serif;
+	background-color: #000000;
+	overflow: hidden;
+}
+
+.map {
+	position: absolute;
+	top: 50%;
+	left: 30%;
+	transform: translate(-50%, -50%);
+}
+
+#desc {
+	visibility: hidden;
+
+	width: 35vw;
+	height: 30vh;
+
+	position: absolute;
+	left: 60vw;
+	top: 30vh;
+}
+
+#roomName {
+	font-size: 6ch;
+	color: white;
+	text-decoration: underline;
+}
+
+#roomDesc {
+	font-size: 2ch;
+	color: white;
+	position: absolute;
+	top: 50%;
+}
+
+@media screen and (max-width: 1599px) {
+	#desc {
+		top: 85%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	#roomName {
+		font-size: 4ch;
+	}
+	#roomDesc {
+		position: absolute;
+		top: 27.5%;
+	}
+	.map {
+		zoom: 0.65;
+		top: 45%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+}
+
+@media screen and (max-width: 825px) {
+	.map {
+		left: 50%;
+		transform: translate(-50%, -50%);
+		zoom: 0.4;
+		top: 35%;
+	}
+	#desc {
+		top: 70%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 100vw;
+	}
+	#roomName {
+		text-align: center;
+		font-size: 3ch;
+	}
+	#roomDesc {
+		text-align: center;
+		top: 27.5%;
+		font-size: 2ch;
+	}
+}
