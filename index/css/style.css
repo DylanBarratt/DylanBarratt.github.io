@@ -48,9 +48,23 @@ h1 {
 
 	align-self: end;
 	text-align: right;
-	margin-left: -50px;
+	margin-left: -5%;
 }
 
 #arrow:hover {
 	color: rgb(167, 167, 167);
+}
+
+#git {
+	position: fixed;
+	top: 90%;
+	left: 2.5%;
+
+	font-size: 3ch;
+	text-decoration: none;
+	color: white;
+}
+
+#git:hover {
+	color: grey;
 }

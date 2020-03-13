@@ -1,44 +1,96 @@
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Rock+Salt&display=swap");
+
 * {
 	padding: 0px;
 	margin: 0px;
 }
 
 body {
-	background-color: rgb(19, 19, 19);
+	background-color: rgb(0, 0, 0);
 	color: white;
+	font-family: "Open Sans", sans-serif;
 }
 
 .p5Canvas {
-	z-index: -20;
+	z-index: -20 !important;
+	position: fixed !important;
+	top: 20px;
 }
 
-#grid-container {
+#mainTitle {
+	width: 100%;
+	text-align: center;
+	margin-top: -7.5%;
+	font-size: 5ch;
+	font-family: "Rock Salt", cursive;
+}
+
+#mainSubtitle {
+	width: 100%;
+	text-align: center;
+	font-size: 1ch;
+}
+
+#mainGrid {
 	display: grid;
-	justify-items: center;
+	align-items: center;
+	grid-template-rows: repeat(4, calc(100vh));
 
-	width: 70%;
-
-	margin-left: 15%;
-
-	position: absolute;
+	margin-left: 10%;
+	width: 80%;
 }
 
 .grid-item {
-	margin-top: 5%;
-	margin-bottom: 10%;
+	display: grid;
+	grid-template-rows: 50% 10% 40%;
+	place-items: center;
+
 	width: 100%;
-	height: 75%;
-	text-align: center;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.883);
 }
 
 .image {
-	margin-bottom: 2.5%;
+	height: 75%;
+	align-self: end;
 }
 
 .title {
-	border-top: 3px solid rgb(0, 0, 0);
-	border-radius: 3px;
+	align-self: center;
+	font-family: "Rock Salt", cursive;
+}
 
-	width: 40%;
-	margin-left: 30%;
+.desc {
+	align-self: start;
+	width: 50%;
+	text-align: center;
+}
+
+#arrow {
+	position: fixed;
+	top: 87.5%;
+	left: 2.5%;
+
+	font-size: 5ch;
+	text-decoration: none;
+	color: white;
+}
+
+#arrow:hover {
+	color: grey;
+}
+
+#git {
+	position: fixed;
+	top: 90%;
+	left: 95%;
+
+	font-size: 4.75ch;
+	text-decoration: none;
+	color: white;
+}
+
+#git:hover {
+	color: grey;
 }

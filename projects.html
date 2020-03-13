@@ -6,23 +6,47 @@
 		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 		<title>Document</title>
 		<link rel="stylesheet" href="projects/css/style.css" />
+		<script src="https://kit.fontawesome.com/e015319f89.js" crossorigin="anonymous"></script>
 	</head>
 	<body>
-		<div id="grid-container">
+		<div id="mainGrid">
+			<div>
+				<h1 id="mainTitle">My Projects!</h1>
+				<h2 id="mainSubtitle">Click the images to preview</h2>
+			</div>
+
 			<div class="grid-item" id="1">
-				<a href=""><img src="projects/images/conway.jpg" alt="Conways Game of Life" class="image"/></a>
-				<h1 class="title">Conways Game of Life</h1>
+				<img src="projects/images/conway.jpg" alt="Conway's Game of Life" class="image" />
+				<h1 class="title">Conway's Game of Life</h1>
+				<p class="desc">
+					The Game of Life is a cellular automaton devised by the British mathematician John Horton Conway in 1970. The game is a zero-player game, meaning that
+					its evolution is determined by its initial state, requiring no further input. This version was created using p5.js.
+				</p>
 			</div>
+
 			<div class="grid-item" id="2">
-				<a href=""><img src="projects/images/tictactoe.jpg" alt="Tic Tac Toe AI" class="image"/></a>
-				<h1 class="title">Tic Tac Toe AI</h1>
-			</div>
-			<div class="grid-item" id="3">
-				<a href=""><img src="projects/images/snake.jpg" alt="Snake" class="image"/></a>
+				<img src="projects/images/snake.jpg" alt="Snake" class="image" />
 				<h1 class="title">Snake</h1>
+				<p class="desc">
+					Snake is the common name for a video game concept where the player maneuvers a line which grows in length, with the line itself being a primary
+					obstacle. This version was created using p5.js.
+				</p>
+			</div>
+
+			<div class="grid-item" id="3">
+				<img src="projects/images/tictactoe.jpg" alt="Tic Tac Toe AI" class="image" />
+				<h1 class="title">Tic Tac Toe AI</h1>
+				<p class="desc">
+					Tic Tac Toe is a game played between two people, where one is a cross and the other is a nought. The objective is to get three of your own shapes in a
+					line. In this version youy play against the computer. The computer makes perfect desicions and is unbeatable. It was created using p5.js.
+				</p>
 			</div>
 		</div>
+		<a href="https://github.com/DylanBarratt" class="fab fa-github" id="git"></a>
+		<a href="index.html" id="arrow">&#8592;</a>
 	</body>
 </html>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.9.0/addons/p5.dom.js"></script>
 <script src="stars.js"></script>
