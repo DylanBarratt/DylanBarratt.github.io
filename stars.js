@@ -191,6 +191,7 @@ function drawSpace() {
 //called when the window is resized.
 //regenerates the entire canvas to make sure it fits in the screen
 function windowResized() {
+	window.scrollTo(0, 0);
 	amount = random(document.documentElement.clientWidth * 0.25, document.documentElement.clientWidth * 0.5);
 	resizeCanvas(document.documentElement.clientWidth, document.documentElement.clientHeight);
 	generateStars();

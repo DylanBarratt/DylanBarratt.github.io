@@ -69,8 +69,8 @@ body {
 
 #arrow {
 	position: fixed;
-	top: 87.5%;
-	left: 2.5%;
+	bottom: 3%;
+	left: 3%;
 
 	font-size: 5ch;
 	text-decoration: none;
@@ -83,8 +83,8 @@ body {
 
 #git {
 	position: fixed;
-	top: 90%;
-	left: 95%;
+	bottom: 3%;
+	right: 3%;
 
 	font-size: 4.75ch;
 	text-decoration: none;
@@ -93,4 +93,22 @@ body {
 
 #git:hover {
 	color: grey;
+}
+
+@media only screen and (max-width: 600px) {
+	.desc {
+		visibility: hidden;
+	}
+
+	#mainGrid {
+		grid-template-rows: 100vh repeat(3, calc(50vh));
+	}
+
+	.title {
+		font-size: 2ch;
+	}
+
+	.image {
+		height: 100%;
+	}
 }
